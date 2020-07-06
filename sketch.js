@@ -12,7 +12,7 @@ var polygon_img, backgroundImg;
 var score=0;
 var bg = "images/light.jpg";
 function preload(){
-  getBackgroundImage();
+ 
   polygon_img=loadImage("images/polygon.png");
   
 }
@@ -70,8 +70,14 @@ function setup() {
 }
 function draw() {
   //background(56,44,44); 
-  if(backgroundImg)
-    background(backgroundImg);
+  if(getBackgroundImage()==true){
+    background("lightGreen");
+  }
+  else{
+    background("darkblue");
+     
+  }
+       
   //Engine.update(engine);
   text(mouseX + ',' + mouseY, 10, 15);
   textSize(20);
@@ -166,14 +172,17 @@ async function getBackgroundImage(){
 
    var datetime = responseJSON.datetime;
    var hour = datetime.slice(11, 13);
-   //console.log(hour);
+   console.log(hour);
 
    if (hour >= 06 && hour <= 18) {
-     bg = "images/light.jpg";
+     
+
+      return true;
    } else {
-     bg = "images/dark.jpg";
+     
+      return false;
+
    }
 
-   backgroundImg = loadImage(bg);
-   console.log(backgroundImg);
+   
 }
